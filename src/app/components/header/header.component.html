@@ -1,22 +1,24 @@
-<div> 
+<header>
+  <div>
     <mat-toolbar color="primary">
       <!-- <div fxShow="true" fxHide.gt-sm="true">
         <button mat-icon-button (click)="sidenav.toggle()">
           <mat-icon>menu</mat-icon>
         </button>
       </div> -->
-  
+
       <a mat-button class="companyName" routerLink="/">
         <span>AutoDoc</span>
       </a>
       <span class="example-spacer"></span>
       <div fxShow="true" fxHide.lt-md="true">
-        <a mat-button routerLink="/about-us">Home</a>
-        <a mat-button routerLink="/prices">About</a>
-        <a mat-button routerLink="/start-page">Booking</a>
-        <a mat-button routerLink="/offer">Services</a>
+        <a mat-button routerLink="/">Home</a>
+        <a mat-button routerLink="/about">About</a>
+        <a mat-button routerLink="/booking">Booking</a>
+        <a mat-button routerLink="/services">Services</a>
+        <button mat-raised-button color="green">Login</button>
       </div>
-  
+
     </mat-toolbar>
     <!-- <mat-sidenav-container fxFlexFill class="example-container">
   
@@ -34,3 +36,4 @@
       </mat-sidenav-content>
     </mat-sidenav-container> -->
   </div>
+</header>
