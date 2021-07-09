@@ -10,14 +10,15 @@
       <a mat-button class="companyName" routerLink="/">
         <span>AutoDoc</span>
       </a>
-      <span class="example-spacer"></span>
       <div fxShow="true" fxHide.lt-md="true">
         <a mat-button routerLink="/">Home</a>
         <a mat-button routerLink="/about">About</a>
         <a mat-button routerLink="/booking">Booking</a>
         <a mat-button routerLink="/services">Services</a>
-        <button mat-raised-button color="green"><a routerLink="/login">Login</a></button>
       </div>
+      <span class="spacer"></span>
+      <button mat-raised-button color="accent"><a routerLink="/login">Login</a></button>
+      <button mat-raised-button color="accent"><a routerLink="/register">Sign Up</a></button>
 
     </mat-toolbar>
     <!-- <mat-sidenav-container fxFlexFill class="example-container">

@@ -9,12 +9,14 @@ import { HeaderComponent } from './components/header/header.component';
 import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BookingComponent } from './components/pages/booking/booking.component';
+import { RegisterComponent } from './components/pages/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    BookingComponent
+    BookingComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

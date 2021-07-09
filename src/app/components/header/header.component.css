@@ -25,25 +25,14 @@ a {
 button {
   font-size: 110%;
   min-width: min-content;
+  margin-right: 10px;
 }
 
-.example-spacer {
+.spacer {
   flex: 1 1 auto;
 }
 
 .mat-sidenav-content {
   font-size: 200%;
   text-align: center;
-}
-
-/* AutoDoc Logo 1 */
-.logo {
-  position: absolute;
-  width: 228px;
-  height: 213px;
-  left: 14px;
-  top: 7px;
-
-  /* background: url(AutoDoc Logo.png); */
-  mix-blend-mode: hard-light;
 }
