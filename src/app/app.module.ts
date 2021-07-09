@@ -8,7 +8,7 @@ import { HeaderComponent } from './components/header/header.component';
 
 import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { BookingComponent } from './pages/booking/booking.component';
+import { BookingComponent } from './components/pages/booking/booking.component';
 
 @NgModule({
   declarations: [
