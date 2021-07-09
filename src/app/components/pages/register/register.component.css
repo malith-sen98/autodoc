@@ -1,3 +1,7 @@
+.formbox {
+    text-align: center;
+    margin: auto;
+}
 .example-form {
     min-width: 150px;
     max-width: 500px;
@@ -11,3 +15,10 @@
   td {
     padding-right: 8px;
   }
+
+  form{
+      margin-left: auto;
+      margin-right: auto;
+  }
+
+  
