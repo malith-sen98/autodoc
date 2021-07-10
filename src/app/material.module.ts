@@ -1,21 +1,8 @@
-// import { NgModule } from '@angular/core';
-// import { CommonModule } from '@angular/common';
-
-
-
-// @NgModule({
-//   declarations: [],
-//   imports: [
-//     CommonModule
-//   ]
-// })
-// export class MaterialModule { }
-
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -32,7 +19,6 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -53,6 +39,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     imports: [
         CommonModule,
         BrowserAnimationsModule,
+        MatCardModule,
         MatCheckboxModule,
         MatCheckboxModule,
         MatButtonModule,
@@ -70,7 +57,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
         MatToolbarModule,
         MatListModule,
         MatGridListModule,
-        MatCardModule,
         MatStepperModule,
         MatTabsModule,
         MatExpansionModule,

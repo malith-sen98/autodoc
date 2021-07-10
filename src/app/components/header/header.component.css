@@ -26,6 +26,7 @@ button {
   font-size: 110%;
   min-width: min-content;
   margin-right: 10px;
+  background-color: rgb(54, 216, 81);
 }
 
 .spacer {
