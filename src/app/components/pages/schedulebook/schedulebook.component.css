@@ -1,0 +1,53 @@
+mat-grid-tile {
+    background: lightblue;
+  }
+
+   .container{
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        width: 1800px;
+        height: 700px;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 10px;
+        box-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
+        
+   }
+
+   .grid{
+       position: absolute;
+       top: 200px;
+       left: 50px;
+       width: 1700px;
+       font-size: 20px;
+       font-weight: 700;
+      
+   }
+
+   .date{
+        position: absolute;
+        top: 50px;
+        left: 1470px;
+        font-size: 25px;
+    }
+
+   #bay{
+       font-size: 25px;
+       font-weight: bolder;
+       border-radius: 10px;
+       background: rgb(0, 17, 255);
+       color: white;
+   }
+
+   #time{
+    border-radius: 8px;
+    
+   }
+
+   h1{
+       text-align: left;
+       font-size: 50px;
+       margin-left: 30px;
+   }
+
+   

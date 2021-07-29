@@ -1,0 +1,28 @@
+.footer{
+    position: absolute;
+    width: 1920px;
+    height: 60px;
+    left: 0px;
+    top: 1046px;
+    background-color: black;
+}
+
+.footer p{
+    position: absolute;
+    width: 415px;
+    height: 28px;
+    left: 716px;
+    bottom: 1px;
+
+
+    font-family: 'Changa', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 28px;
+    /* identical to box height */
+
+    text-align: center;
+
+    color: #ffffff;
+}

@@ -1,0 +1,20 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  mat-sidenav, 
+mat-sidenav.md-locked-open, 
+mat-sidenav.md-closed.md-locked-open-add-active {
+    min-width: 200px !important;
+    width: 85vw !important;
+    max-width: 400px !important;
+} 
+
+mat-sidenav-container {
+  position: fixed;
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+  min-width: 100%;
+  /* background-color: rgb(0, 110, 255); */
+  background-image: url("../../../assets/img/back/blue_abstract_3.jpg");
+}

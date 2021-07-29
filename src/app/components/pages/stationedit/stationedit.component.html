@@ -1,0 +1,88 @@
+<div class = "content">
+    
+    <div class = "form">
+        <h1 id = "heading">Edit Profile</h1>
+
+        <form class="example-form">
+            <table class="example-full-width" appearance="fill">
+                <tr>
+                    <td>
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label >Company (disabled)</mat-label>
+                            <input matInput disabled value="ABC Servce Station">
+                        </mat-form-field>
+                    </td>
+
+                    <td>
+                        <mat-form-field class="example-full-width" appearance="fill">
+                            <mat-label >Company Registration Number (disabled)</mat-label>
+                            <input matInput disabled value="RG123456">
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+            
+            <p>Service Station System Operator Details:</p>
+            <table class="example-full-width" cellspacing="0"><tr>
+              <td><mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>First name</mat-label>
+                <input matInput value = "Nuwin">
+              </mat-form-field></td>
+              <td><mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Last Name </mat-label>
+                <input matInput value = "Kalpadeepa">
+              </mat-form-field></td>
+            </tr></table>
+          
+            <p>Service Station Location Details:</p>
+            <p>
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Address Line 1</mat-label>
+                <textarea matInput placeholder="Ex. 100 Main St" value = "No.12/7 A"></textarea>
+              </mat-form-field>
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Address Line 2</mat-label>
+                <textarea matInput value = "High Level Road"></textarea>
+              </mat-form-field>
+            </p>
+            
+          
+            <table class="example-full-width" cellspacing="0"><tr>
+              <td><mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>District/City</mat-label>
+                <input matInput placeholder="Ex. Colombo" value = "Maharagama">
+              </mat-form-field></td>
+              <td><mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Province</mat-label>
+                <input matInput placeholder="Ex. Western" value = "Western">
+              </mat-form-field></td>
+              <td><mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Postal Code</mat-label>
+                <input matInput #postalCode maxlength="5" placeholder="Ex. 94105" value="10230">
+                <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+              </mat-form-field></td>
+            </tr></table>
+
+            <p>Service Station Contact Details:</p>
+
+            <table class="example-full-width" cellspacing="0"><tr>
+                <td><mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Telephone</mat-label>
+                  <input matInput placeholder="Ex. 011 2 123 123">
+                </mat-form-field></td>
+                <td><mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Mobile 1</mat-label>
+                  <input matInput placeholder="Ex. 071 12 34 567">
+                </mat-form-field></td>
+                <td><mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Mobile 2</mat-label>
+                  <input matInput #postalCode maxlength="5" placeholder="Ex. 071 12 34 567" value="">
+                  <mat-hint align="end">{{postalCode.value.length}} / 10</mat-hint>
+                </mat-form-field></td>
+              </tr></table>
+          </form>
+
+          
+          <a mat-button routerLink="/confirm" id = 'confirmbutton'>CONFIRM</a>
+    </div>
+</div>

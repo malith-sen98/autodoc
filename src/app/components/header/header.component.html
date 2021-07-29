@@ -8,16 +8,22 @@
       </div> -->
 
       <a mat-button class="companyName" routerLink="/">
-        <span>AutoDoc</span>
+        
       </a>
-      <span class="example-spacer"></span>
-      <div fxShow="true" fxHide.lt-md="true">
-        <a mat-button routerLink="/">Home</a>
-        <a mat-button routerLink="/about">About</a>
-        <a mat-button routerLink="/booking">Booking</a>
-        <a mat-button routerLink="/services">Services</a>
-        <button mat-raised-button color="green"><a routerLink="/login">Login</a></button>
+      
+      <div class = "button" fxShow="true" fxHide.lt-md="true">
+        <div class = "logo">
+          <img src="assets/img/logo/autodoc.png">
+        </div>
+        <a mat-button routerLink="/home" id = 'home'>HOME</a>
+        <a mat-button routerLink="/about" id = 'about'>ABOUT</a>
+        <a mat-button routerLink="/booking" id = 'booking'>BOOKING</a>
+        <a mat-button routerLink="/services" id = 'services'>SERVICES</a>
+        <a mat-button routerLink="/profile" id = 'login'>LOGIN</a>
+        <!-- <button mat-raised-button color="warn"><a routerLink="/login">SIGN IN</a></button> -->
       </div>
+      
+        
 
     </mat-toolbar>
     <!-- <mat-sidenav-container fxFlexFill class="example-container">

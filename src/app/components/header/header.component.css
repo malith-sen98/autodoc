@@ -3,7 +3,7 @@
 }
 
 .mat-toolbar {
-  height: 7vh;
+  height: 0px;
   
 }
 
@@ -23,13 +23,11 @@ a {
 }
 
 button {
-  font-size: 110%;
+  font-size: 100%;
   min-width: min-content;
 }
 
-.example-spacer {
-  flex: 1 1 auto;
-}
+
 
 .mat-sidenav-content {
   font-size: 200%;
@@ -47,3 +45,119 @@ button {
   /* background: url(AutoDoc Logo.png); */
   mix-blend-mode: hard-light;
 }
+
+
+
+.nav a{
+font-family: 'Catamaran', sans-serif;
+font-style: normal;
+font-weight: normal;
+font-size: 25px;
+line-height: 41px;
+/* identical to box height */
+
+color: #D8FFE7;
+
+}
+
+/*HOME button*/
+#home{
+  position: absolute;
+  width: 67px;
+  height: 41px;
+  left: 346px;
+  top: 41px;
+}
+
+/*ABOUT button*/
+#about{
+position: absolute;
+width: 80px;
+height: 41px;
+left: 539px;
+top: 41px; 
+ }
+
+ /*BOOKING button*/
+ #booking{
+  position: absolute;
+  width: 106px;
+  height: 41px;
+  left: 750px;
+  top: 41px;
+ }
+
+ /*SERVICES button*/
+ #services{
+  position: absolute;
+  width: 103px;
+  height: 41px;
+  left: 999px;
+  top: 41px;
+ }
+
+ /*SIGN IN button*/
+ #login{
+  position: absolute;
+  width: 83px;
+  height: 41px;
+  left: 1763px;
+  top: 41px;
+  }
+
+
+
+  /*copied button CSS*/
+  .button a {
+    display: inline-block;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 0px 0px;
+    font-weight: bold;
+    font-family: 'Catamaran', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+    line-height: 41px;
+    /* identical to box height */
+    color: #ffffff;
+  }
+  
+  /* .button a:after{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -10px;
+    width: 0%;
+    background: rgb(255, 255, 255);
+    height: 100%;
+    z-index: -1;
+    transition: width 0.3s ease-in-out;
+    transform: skew(-25deg);
+    transform-origin: right;
+  }
+  
+  .button a:hover:after {
+    width: 150%;
+    left: -10px;
+    transform-origin: left;
+    
+  } */
+  
+  .button a:hover {
+    color: rgb(0, 0, 0);
+    transition: all 0.5s ease;
+  }
+
+  
+  /*Logo*/
+  .logo img{
+  position: absolute;
+  width: 228px;
+  height: 213px;
+  left: 14px;
+  top: 7px;
+  mix-blend-mode: hard-light;
+  }
+
