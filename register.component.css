@@ -1,0 +1,209 @@
+::ng-deep .mat-tab-label {
+  margin: 0px auto;
+  font-size: 25px;
+}
+
+.container {
+  width: 100vw;
+  margin-top: 1%;
+  max-height: fit-content;
+  padding-bottom: 5%;
+  /* background: red; */
+}
+
+.content {
+  margin-top: 2%;
+  /* background: red; */
+  max-height: 60vh;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.content::-webkit-scrollbar {
+  display: none;
+}
+.tabs {
+  position: relative;
+  margin: 0% auto;
+  background: rgba(255, 255, 255, 0.5);
+  width: 94%;
+  max-height: 80vh;
+  padding: 2%;
+  padding-bottom: 6%;
+  border-radius: 15px;
+}
+
+.buttons {
+  /* background: red; */
+  width: 100%;
+  margin: 40px auto;
+}
+
+button:focus{
+  outline: none;
+}
+
+.signUpButton {
+  display: block;
+  margin: 5px auto;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  font-family: catamaran;
+  font-size: 20px;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 0.3%;
+  padding-bottom: 0.3%;
+  border-radius: 20px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  border: none;
+  cursor: pointer;
+}
+
+.signUpButton:hover {
+  background-color: #2979ff;
+  box-shadow: 0px 15px 20px rgba(87, 90, 255, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+p {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+input,
+select {
+  margin: 10px 15px;
+  margin-top: 0;
+  padding: 0.6%;
+  border: none;
+  border-radius: 5px;
+  border: solid 1.5px #d3d3d3;
+  -webkit-transition: 1s; /* Safari */
+  transition: 1s;
+}
+
+select:focus {
+  outline: none;
+}
+
+input[type="text"]:hover,
+select:hover {
+  box-shadow: 0 0 5pt 0.5pt #8c84ff;
+}
+
+input[type="text"]:focus,
+select:focus {
+  box-shadow: 0 0 5pt 2pt #8c84ff;
+  outline-width: 0px;
+}
+
+input[type="password"]:hover,
+select:hover {
+  box-shadow: 0 0 5pt 0.5pt #8c84ff;
+}
+
+input[type="password"]:focus,
+select:focus {
+  box-shadow: 0 0 5pt 2pt #8c84ff;
+  outline-width: 0px;
+}
+
+.section {
+  background: rgba(255, 255, 255, 0.3);
+  width: 96%;
+  padding: 0.6%;
+  border-radius: 10px;
+  font-family: Catamaran;
+  margin: 10px auto;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.section::-webkit-scrollbar {
+  display: none;
+}
+
+.sectionHalf {
+  background: rgba(255, 255, 255, 0.3);
+  width: 46.15%;
+  padding: 0.6%;
+  border-radius: 10px;
+  font-family: Catamaran;
+  margin: 0px 17px;
+  display: inline-block;
+}
+
+::placeholder {
+  color: rgba(0, 0, 0, 0.3);
+  /* opacity: 100   */
+}
+
+#fname,
+#lname {
+  width: 46%;
+}
+
+#address {
+  width: 73%;
+}
+
+#email,
+#telephone,
+#password,
+#re-password {
+  width: 40%;
+  padding: 1.2%;
+}
+
+#sname {
+  width: 47%;
+}
+
+#baycount {
+  width: 20%;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  position: relative;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 5px;
+  padding: 10px 5px 0px 5px;
+  cursor: pointer;
+  color: rgb(0, 0, 0);
+}
+
+#uploadImage {
+  background: transparent;
+  width: 18%;
+  border: none;
+  margin-right: 0px;
+}
+
+.imageUpload {
+  width: fit-content;
+}
+
+td {
+  text-align: center;
+  font-size: 15px;
+}
+
+#price,
+#duration {
+  /* width: 70%; */
+  margin: 5px;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 1%;
+  padding-right: 1%;
+}
