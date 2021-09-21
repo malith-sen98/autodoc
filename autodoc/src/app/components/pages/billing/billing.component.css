@@ -1,0 +1,139 @@
+.container{
+  display: inline-flex;
+  width: 100%;
+  margin-top: 0%;
+  /* background: rgb(255, 251, 10); */
+  padding-bottom: 0%;
+}
+
+.content{
+  height: 67vh;
+  overflow-y: auto;
+  -ms-overflow-style: none;  /*IE and Edge*/
+  scrollbar-width: none;  /*Firefox*/ 
+}
+
+.content::-webkit-scrollbar {
+  display: none;
+}
+
+.mat-form-field{
+  font-size: 20px;
+}
+.details{
+  /* display: inline-flex; */
+  padding: 2%;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+#customer_name{
+  width: 100%;
+
+}
+
+.custom-date-class {
+  background: rgb(0, 255, 13) !important;
+  border-radius: 100% !important;
+}
+
+.service{
+  display: inline-block;
+  width: 20%;
+  font-size: 20px;
+  background: rgba(88, 118, 255, 0.5);
+  padding-left: 0px;
+  border-radius: 5px;
+  color: white;
+}
+
+.service h1{
+  font-family: catamaran;
+  font-size: 2em;
+}
+
+
+
+.invoice{
+  display: inline-block;
+  width: 100%;
+  padding-bottom: 1%;
+  text-align: center;
+  align-items: center;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.invoice h1{
+  margin: 2% auto;
+  font-size: 40px;
+}
+
+.payment{
+  width: 95%;
+  margin: 2% auto;
+}
+
+table {
+  width: 97%;
+  margin: 1% auto;
+  overflow: hidden;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+th{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+td{
+  font-size: 18px;
+}
+.mat-elevation-z8 td, .mat-elevation-z8  th{
+  text-align: center;
+}
+
+button{
+  margin: 1% 2%;
+  float: left;
+}
+
+.amount{
+  font-size: 20px;
+  font-weight: 700;
+  color: antiquewhite;
+}
+.matbuttonst{
+  font-size: 20px;
+  background: rgba(61, 12, 238, 0.525);
+  border-radius: 10px;
+  width:96%;
+  /* box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25); */
+  padding: 5px;
+  font-family: Catamaran;
+  font-size: 18px;
+}
+
+
+.matbuttonot{
+  font-size: 25px;
+  background: rgb(0, 0, 0);
+  border-radius: 10px;
+  width: 96%;
+  /* box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25); */
+  padding: 5px;
+  font-family: Catamaran;
+}
+
+.scrol {
+  margin-top: 5px;
+  height: 40em;
+  overflow-y: auto;
+  white-space: nowrap;
+  -ms-overflow-style: none;  /*IE and Edge*/
+  scrollbar-width: none;  /*Firefox*/ 
+}
+
+.scrol::-webkit-scrollbar {
+  display: none;
+}

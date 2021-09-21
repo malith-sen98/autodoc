@@ -1,0 +1,133 @@
+<div class="container">
+    <div  class = "tabs">
+        <mat-tab-group id="tabs">
+            <mat-tab label="Today" id = "today"> 
+                <div class = "content">
+                    <div class = "todayServices">
+
+                        <h1>Today Services</h1>
+                        <!-- Today's Services Table -->
+                        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                        
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="position">
+                            <th mat-header-cell *matHeaderCellDef> No. </th>
+                            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                        </ng-container>
+                        
+                        <!-- ServiceType Column -->
+                        <ng-container matColumnDef="service">
+                            <th mat-header-cell *matHeaderCellDef style="width: 69%;"> Service Type </th>
+                            <td mat-cell *matCellDef="let element"> {{element.service}} </td>
+                        </ng-container>
+                        
+                        <!-- Bay Column -->
+                        <ng-container matColumnDef="bay">
+                            <th mat-header-cell *matHeaderCellDef> Bay </th>
+                            <td mat-cell *matCellDef="let element"> {{element.bay}} </td>
+                        </ng-container>
+                        
+                        <!-- Vehicle No Column -->
+                        <ng-container matColumnDef="vehicleNo">
+                            <th mat-header-cell *matHeaderCellDef style="width:15%;"> Vehicle No. </th>
+                            <td mat-cell *matCellDef="let element"> {{element.vehicleNo}} </td>
+                        </ng-container>
+                        
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                        
+                    </div>
+                    <div class="spinners">
+                        <div class ="bay1spinner" *ngFor="let x of wkbayList">
+                            
+                            <mat-progress-spinner
+                                class="example-margin"
+                                [color]="colorBay1"
+                                [mode]="modeBay1"
+                                [value]="(x.bayload * 200)/18"
+                                [diameter]=diameterBay1>
+                            </mat-progress-spinner>
+
+                            <h1>Bay {{x.bayid}}
+                                <br>
+                                {{((x.bayload * 200)/18).toFixed(1)}} %
+                            </h1>
+                            
+                            
+                        </div>
+                    </div>
+
+                    
+
+                </div>
+
+            </mat-tab>
+            <mat-tab label="Schedule Bookings">
+                <div class = "content">
+                    <app-schedulebook></app-schedulebook>
+                </div>
+            </mat-tab>
+            <mat-tab label="Roster Management"> 
+                <div class = "content">
+                    <app-employeedetails></app-employeedetails>
+                </div>   
+            </mat-tab>
+            <mat-tab label="Inventory Management"> 
+                <div class = "content">
+                    <app-inventory></app-inventory>
+                </div>
+            </mat-tab>
+            <mat-tab label="Billing"> 
+                <div class = "content">
+                    <app-billing></app-billing>
+                </div>
+            </mat-tab>    
+            <mat-tab label="Bill History"> 
+                <div class = "content">
+                    <app-view-bills></app-view-bills>
+                </div>
+            </mat-tab>  
+            <mat-tab label="Profile">
+                <div class="content">
+                    <div class = "stationprofile" *ngFor="let i of serStatLists"> 
+                        <h1>{{i.st_name}}</h1>
+                        <p style="margin: 0;">Reg No: {{i.st_id}}</p>
+                        <img src = "assets/img/user/user.png" id ="userimg"> 
+                        <h2 style="margin: 0;">{{i.firstName}} {{i.lastName}}</h2>
+                        <p style="margin:10px;"> <mat-icon>place</mat-icon> {{i.address}}, {{i.town}}</p>
+                        <p style="margin:0px;"> <mat-icon>phone</mat-icon> {{i.mobile}}</p>
+                        <p style="margin:0px;"> <mat-icon>alternate_email</mat-icon>  {{i.email}}</p>
+
+                        <a mat-fab id = 'editbutton' routerLink="/stationedit"> <mat-icon>edit</mat-icon> </a>
+                    </div>
+
+                        <div class = "stationprofileservices">
+                            
+                            <h1>Services</h1>
+                            <a *ngFor="let i of newServiceFiltServsList; ">
+                                <a *ngIf="i.service_id == 13" mat-button class = 'serviceButton'><img src = "assets/img/ico/battery.png" id ="batteryIco"><button class="removeService" color="warn" mat-icon-button (click)="delete(i.service_id)"><mat-icon>remove_circle_outline</mat-icon></button><br> <p>Battery Replacement</p> <br>Amount Rs. {{i.amount}}<br>Duration: {{i.duration_hrs}}Hrs</a>
+                                <a *ngIf="i.service_id == 16" mat-button class = 'serviceButton'><img src = "assets/img/ico/polish.png" id ="polishIco"><button class="removeService" color="warn" mat-icon-button (click)="delete(i.service_id)"><mat-icon>remove_circle_outline</mat-icon></button><br> <p> Cut & Polish </p><br>Amount Rs. {{i.amount}}<br>Duration: {{i.duration_hrs}}Hrs</a>
+                                <a *ngIf="i.service_id == 12" mat-button class = 'serviceButton'><img src = "assets/img/ico/engineTune.png" id ="engineTuneIco"><button class="removeService" color="warn" mat-icon-button (click)="delete(i.service_id)"><mat-icon>remove_circle_outline</mat-icon></button><br><p>Engine Tune-Up </p> <br>Amount Rs. {{i.amount}}<br>Duration: {{i.duration_hrs}} </a>
+                                <a *ngIf="i.service_id == 17" mat-button class = 'serviceButton'><img src = "assets/img/ico/interiorCleaning.png" id ="interiorCleanIco"><button class="removeService" color="warn" mat-icon-button (click)="delete(i.service_id)"><mat-icon>remove_circle_outline</mat-icon></button><br> <p>Interior Cleaning & Body Wash</p> Amount Rs. {{i.amount}}<br>Duration: {{i.duration_hrs}}Hrs</a>
+                                <a *ngIf="i.service_id == 14" mat-button class = 'serviceButton'><img src = "assets/img/ico/waxing.png" id ="waxingIco"><button class="removeService" color="warn" mat-icon-button (click)="delete(i.service_id)"><mat-icon>remove_circle_outline</mat-icon></button><br> <p>Waxing</p>  <br>Amount Rs. {{i.amount}}<br>Duration: {{i.duration_hrs}}Hrs</a>
+                                <a *ngIf="i.service_id == 15" mat-button class = 'serviceButton'><img src = "assets/img/ico/wheelAlignment.png" id ="wheelAlignIco"><button class="removeService" color="warn" mat-icon-button (click)="delete(i.service_id)"><mat-icon>remove_circle_outline</mat-icon></button><br> <p>Wheel Alignment</p> <br>Amount Rs. {{i.amount}}<br>Duration: {{i.duration_hrs}}Hrs</a>
+                                <a *ngIf="i.service_id == 18" mat-button class = 'serviceButton'><img src = "assets/img/ico/wheelReplace.png" id ="wheelReplaceIco"><button class="removeService" color="warn" mat-icon-button (click)="delete(i.service_id)"><mat-icon>remove_circle_outline</mat-icon></button><br> <p>Tyre Replacement</p> <br>Amount Rs. {{i.amount}}<br>Duration: {{i.duration_hrs}}Hrs</a>
+                                <a *ngIf="i.service_id == 11" mat-button class = 'serviceButton'><img src = "assets/img/ico/oil.png" id ="wheelReplaceIco"><button class="removeService" color="warn" mat-icon-button (click)="delete(i.service_id)"><mat-icon>remove_circle_outline</mat-icon></button><br><p>Oil Change & Filter Replacement</p>Amount Rs. {{i.amount}}<br>Duration: {{i.duration_hrs}}Hrs</a>
+                            </a>
+                            <button ng-if="count < 8" mat-fab class = 'add-a-new-service' (click)="openDialogSer()" style="background: black;"> <mat-icon>add</mat-icon> </button> 
+                        </div>
+                </div>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <mat-icon matBadge="3" matBadgeColor="warn"  class="notifications">notifications</mat-icon>
+                  </ng-template>
+
+                  <app-notifications></app-notifications>
+
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+
+</div>  
