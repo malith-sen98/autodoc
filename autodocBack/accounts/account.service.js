@@ -1,0 +1,328 @@
+﻿const config = require('config.json');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const crypto = require("crypto");
+const { Op } = require('sequelize');
+const sendEmail = require('_helpers/send-email');
+const db = require('_helpers/db');
+//const Role = require('_helpers/role');
+
+module.exports = {
+    authenticate,
+    refreshToken,
+    revokeToken,
+    register,
+    verifyEmail,
+    forgotPassword,
+    validateResetToken,
+    resetPassword,
+    resetPasswordLog,
+    getAll,
+    getById,
+    create,
+    sendVerificationAcceptedEmail,
+};
+
+async function authenticate({ email, password, ipAddress }) {
+    const account = await db.Account.scope('withHash').findOne({ where: { email } });
+
+    if (!account || !(await bcrypt.compare(password, account.passwordHash))) {
+        throw 'Email or password is incorrect';
+    }
+
+    if (!account.isVerified) {
+        throw 'Your account has not been verified please check your email';
+    }
+
+    if (account.isAccepted == 'pending' || account.isAccepted == 'declined' || !account.isVerified) {
+        throw 'Your account has not been verified please contact AutoDoc administration';
+    }
+
+    // authentication successful so generate jwt and refresh tokens
+    const jwtToken = generateJwtToken(account);
+    const refreshToken = generateRefreshToken(account, ipAddress);
+
+    // save refresh token
+    await refreshToken.save();
+
+    // return basic details and tokens
+    return {
+        ...basicDetails(account),
+        jwtToken,
+        refreshToken: refreshToken.token
+    };
+}
+
+async function refreshToken({ token, ipAddress }) {
+    const refreshToken = await getRefreshToken(token);
+    const account = await refreshToken.getAccount();
+
+    // replace old refresh token with a new one and save
+    const newRefreshToken = generateRefreshToken(account, ipAddress);
+    refreshToken.revoked = Date.now();
+    refreshToken.revokedByIp = ipAddress;
+    refreshToken.replacedByToken = newRefreshToken.token;
+    await refreshToken.save();
+    await newRefreshToken.save();
+
+    // generate new jwt
+    const jwtToken = generateJwtToken(account);
+
+    // return basic details and tokens
+    return {
+        ...basicDetails(account),
+        jwtToken,
+        refreshToken: newRefreshToken.token
+    };
+}
+
+async function revokeToken({ token, ipAddress }) {
+    const refreshToken = await getRefreshToken(token);
+
+    // revoke token and save
+    refreshToken.revoked = Date.now();
+    refreshToken.revokedByIp = ipAddress;
+    await refreshToken.save();
+}
+
+async function register(params, origin) {
+    // validate
+    if (await db.Account.findOne({ where: { email: params.email } })) {
+        return await sendAlreadyRegisteredEmail(params.email, origin);
+    }
+
+    const account = new db.Account(params);
+
+    account.verificationToken = randomTokenString();
+
+    // hash password
+    account.passwordHash = await hash(params.password);
+
+    // save account
+    await account.save();
+
+    // send email
+    await sendVerificationEmail(account, origin);
+}
+
+async function verifyEmail({ token }) {
+    const account = await db.Account.findOne({ where: { verificationToken: token } });
+
+    if (!account) throw 'Verification failed';
+
+    account.verified = Date.now();
+    account.verificationToken = null;
+    await account.save();
+}
+
+async function forgotPassword({ email }, origin) {
+    const account = await db.Account.findOne({ where: { email } });
+
+    if (!account) return;
+
+    // create reset token that expires after 24 hours
+    account.resetToken = randomTokenString();
+    account.resetTokenExpires = new Date(Date.now() + 24*60*60*1000);
+    await account.save();
+
+    // send email
+    await sendPasswordResetEmail(account, origin);
+}
+
+async function validateResetToken({ token }) {
+    const account = await db.Account.findOne({
+        where: {
+            resetToken: token,
+            resetTokenExpires: { [Op.gt]: Date.now() }
+        }
+    });
+
+    if (!account) throw 'Invalid token';
+
+    return account;
+}
+
+async function resetPassword({ token, password }) {
+    const account = await validateResetToken({ token });
+
+    // update password and remove reset token
+    account.passwordHash = await hash(password);
+    account.passwordReset = Date.now();
+    account.resetToken = null;
+    await account.save();
+}
+
+async function resetPasswordLog({ email, password }) {
+    const account = await db.Account.findOne({ where: { email: email } });
+
+    account.passwordHash = await hash(password);
+    account.passwordReset = Date.now();
+    await account.save();
+}
+
+async function getAll() {
+    const accounts = await db.Account.findAll();
+    return accounts.map(x => basicDetails(x));
+}
+
+async function getById(id) {
+    const account = await getAccount(id);
+    return basicDetails(account);
+}
+
+async function create(params) {
+    // validate
+    if (await db.Account.findOne({ where: { email: params.email } })) {
+        throw 'Email "' + params.email + '" is already registered';
+    }
+
+    const account = new db.Account(params);
+    account.verified = Date.now();
+
+    // hash password
+    account.passwordHash = await hash(params.password);
+
+    // save account
+    await account.save();
+
+    return basicDetails(account);
+}
+
+
+// helper functions
+
+async function getAccount(id) {
+    const account = await db.Account.findByPk(id);
+    if (!account) throw 'Account not found';
+    return account;
+}
+
+async function getRefreshToken(token) {
+    const refreshToken = await db.RefreshToken.findOne({ where: { token } });
+    if (!refreshToken || !refreshToken.isActive) throw 'Invalid token';
+    return refreshToken;
+}
+
+async function hash(password) {
+    return await bcrypt.hash(password, 10);
+}
+
+function generateJwtToken(account) {
+    // create a jwt token containing the account id that expires in 15 minutes
+    return jwt.sign({ sub: account.id, id: account.id }, config.secret, { expiresIn: '15m' });
+}
+
+function generateRefreshToken(account, ipAddress) {
+    // create a refresh token that expires in 7 days
+    return new db.RefreshToken({
+        accountId: account.id,
+        token: randomTokenString(),
+        expires: new Date(Date.now() + 7*24*60*60*1000),
+        createdByIp: ipAddress
+    });
+}
+
+function randomTokenString() {
+    return crypto.randomBytes(40).toString('hex');
+}
+
+function basicDetails(account) {
+    const { id, email, userType, isVerified } = account;
+    return { id, email, userType, isVerified };
+}
+
+async function sendVerificationEmail(account, origin) {
+    console.log(origin);
+    let message;
+    if(account.userType == 'vehicleowner')
+    {
+        if (origin) {
+            const verifyUrl = `${origin}/account/verify-email?token=${account.verificationToken}`;
+            message = `<p>Please click the below link to verify your email address:</p>
+                       <p><a href="${verifyUrl}">${verifyUrl}</a></p>`;
+        } else {
+            message = `<p>Please use the below token to verify your email address with the <code>/account/verify-email</code> api route:</p>
+                       <p><code>${account.verificationToken}</code></p>`;
+        }
+    }
+    else if(account.userType == 'servicestation')
+    {
+        if (origin) {
+            const verifyUrl = `${origin}/account/verify-email?token=${account.verificationToken}`;
+            message = `<p>Your account is under verfication. Please check your email after few hours for more instructions.</p>
+                       <p>If you have any questions contact us by sending an email to infoautodoc@gmail.com</p>`;
+        } else {
+            message = `<p>Please use the below token to verify your email address with the <code>/account/verify-email</code> api route:</p>
+                       <p><code>${account.verificationToken}</code></p>`;
+        }
+    }
+
+    await sendEmail({
+        to: account.email,
+        subject: 'New Sign-Up - AutoDoc',
+        html: `<h4>AutoDoc Sign up verficication process</h4>
+               <p>Thanks for registering!</p>
+               ${message}`
+    });
+}
+
+async function sendVerificationAcceptedEmail(email) {
+    const account = await db.Account.findOne({ where: { email: email } });
+
+    if(account.userType == 'servicestation' && account.isAccepted == 'accepted')
+    {
+            const verifyUrl = `http://localhost:4200/account/verify-email?token=${account.verificationToken}`;
+            message = `<p>Your account has been verfied by AutoDOc administrator. Now you can login using the below link.</p>
+                       <p>If you have any questions contact us by sending an email to infoautodoc@gmail.com</p>
+                       <p><a href="${verifyUrl}">${verifyUrl}</a></p>`;
+    }
+
+    else if (account.userType == 'servicestation' && account.isAccepted == 'declined')
+    {
+        message = `<p>We have reviewed your account. There seems to be some uncertainity of information that you provided</p>`
+                    `<p>Please contact AutoDoc Admin via email @ infoautodoc@gmail.com</p>`;
+    }
+
+    await sendEmail({
+        to: account.email,
+        subject: 'New Sign-Up - AutoDoc',
+        html: `<h4>AutoDoc Sign up verficication process</h4>
+               ${message}`
+    });
+}
+
+async function sendAlreadyRegisteredEmail(email, origin) {
+    let message;
+    if (origin) {
+        message = `<p>If you don't know your password please visit the <a href="${origin}/account/forgot-password">forgot password</a> page.</p>`;
+    } else {
+        message = `<p>If you don't know your password you can reset it via the <code>/account/forgot-password</code> api route.</p>`;
+    }
+
+    await sendEmail({
+        to: email,
+        subject: 'Email Already Registered - AutoDoc',
+        html: `<h4>Email Already Registered</h4>
+               <p>Your email <strong>${email}</strong> is already registered.</p>
+               ${message}`
+    });
+}
+
+async function sendPasswordResetEmail(account, origin) {
+    let message;
+    if (origin) {
+        const resetUrl = `${origin}/account/reset-password?token=${account.resetToken}`;
+        message = `<p>Please click the below link to reset your password, the link will be valid for 1 day:</p>
+                   <p><a href="${resetUrl}">${resetUrl}</a></p>`;
+    } else {
+        message = `<p>Please use the below token to reset your password with the <code>/account/reset-password</code> api route:</p>
+                   <p><code>${account.resetToken}</code></p>`;
+    }
+
+    await sendEmail({
+        to: account.email,
+        subject: 'Reset Password - AutoDoc',
+        html: `<h4>Reset Password Email</h4>
+               ${message}`
+    });
+}

@@ -1,0 +1,41 @@
+﻿{
+    "database": {
+        "host": "localhost",
+        "port": 3306,
+        "user": "root",
+        "password": "",
+        "database": "auto_nim"
+    },
+    "secret": "AutoDoc Secret String",
+    "emailFrom": "autodoc.ucsc@gmail.com",
+    "smtpOptions": {
+        "host": "smtp.gmail.com",
+        "port": 587,
+        "auth": {
+            "user": "autodoc.ucsc@gmail.com",
+            "pass": "autodocproject"
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
