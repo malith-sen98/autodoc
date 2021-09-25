@@ -1,0 +1,14 @@
+<div class="container">
+  <h1 mat-dialog-title style="justify-content: center; text-align: center;">Price Change</h1>
+  <div mat-dialog-content>
+    <p>Please enter an amount</p>
+    <mat-form-field appearance="fill">
+      <mat-label>{{data.service_name_dialog}}</mat-label>
+      <input matInput [(ngModel)]="data.service_amount">
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="data.service_amount" cdkFocusInitial>Ok</button>
+  </div>
+</div>  

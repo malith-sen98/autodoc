@@ -1,0 +1,169 @@
+<style>
+::ng-deep .mat-dialog-container {
+    height: auto !important;
+    width: auto !important;
+    background: none !important;
+    box-shadow: none !important;
+}
+
+  .container {
+    padding: 20px;
+    background: rgba(226, 228, 255, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px;
+    text-align: center;
+    align-items: center;
+  }
+  .mat-form-field {
+    margin-right: 1%;
+    font-size: 20px;
+  }
+
+  h1{
+    margin-top: 0px;
+  }
+
+  td {
+    padding-bottom: 6%;
+    margin-right: 8%;
+    /* background: red; */
+  }
+
+  #resetbutton {
+    position: relative;
+    background: #ff0000;
+    box-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 20px;
+    font-family: Catamaran;
+    border: 0px;
+    padding: 2% 7%;
+    margin: 1%;
+  }
+
+  #resetbutton:hover {
+    background: rgb(7, 3, 243);
+    color: rgb(255, 255, 255);
+    transition: 0.3s;
+  }
+
+  #addbutton {
+    position: relative;
+    background: #0a8f51;
+    box-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 20px;
+    font-family: Catamaran;
+    padding: 1% 5%;
+    margin: 1%;
+  }
+
+  #addbutton:hover {
+    background: rgb(7, 3, 243);
+    color: rgb(255, 255, 255);
+    transition: 0.3s;
+  }
+
+  .buttons {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    margin: 1% auto;
+    margin-top: 3%;
+  }
+</style>
+<div class="container">
+  <h1 mat-dialog-title>View/Edit Employee</h1>
+  <div mat-dialog-content class="content">
+    <table>
+      <tr >
+        <td >
+          <mat-form-field appearance="legacy">
+            <mat-label>Employee ID</mat-label>
+            <input
+            #input disabled value=
+              required
+              [(ngModel)]="emp_id"
+              matInput
+            />
+            <!-- <mat-hint>disabled</mat-hint> -->
+          </mat-form-field>
+        </td>
+        <td>
+          <!-- <mat-slide-toggle>Edit</mat-slide-toggle> -->
+       </td>
+      </tr>
+
+      <tr>
+        <td>
+          <mat-form-field appearance="legacy">
+            <mat-label>Employee Name</mat-label>
+            <input
+              required
+              [(ngModel)]="name"
+              matInput
+              #input
+              placeholder="Ex. Kapila silva"
+            />
+            <!-- <mat-hint>Type Employee Name</mat-hint> -->
+          </mat-form-field>
+        </td>
+
+        <td>
+          <mat-form-field appearance="legacy" style="margin-left: 20px;">
+            <mat-label>Profession</mat-label>
+            <mat-select required [(ngModel)]="position">
+              <mat-option value="Washer">Washer</mat-option>
+              <mat-option value="Engine Tuner"> Engine Tuner</mat-option>
+              <mat-option value="Engineer">Engineer</mat-option>
+              <mat-option value="Mechanic">Mechanic</mat-option>
+              <mat-option value="Cleaner">Cleaner</mat-option>
+              <mat-option value="supervisor">supervisor</mat-option>
+            </mat-select>
+            <!-- <mat-hint>Select the Profession </mat-hint> -->
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field appearance="legacy">
+            <mat-label>Age</mat-label>
+            <input required [(ngModel)]="age" matInput #input />
+            <mat-hint>Years</mat-hint>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="legacy" style="margin-left: 20px;">
+            <mat-label>Mobile</mat-label>
+            <input required [(ngModel)]="mobile" matInput #input mask="(000)-000 0000" />
+            <mat-hint>Ex. (071)-123 4567</mat-hint>
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field appearance="legacy">
+            <mat-label>Salary</mat-label>
+            <input required [(ngModel)]="salary" matInput #input />
+            <mat-hint>Rs.</mat-hint>
+          </mat-form-field>
+        </td>
+        <!-- <td>
+          <mat-form-field appearance="legacy">
+            <mat-label>Bay</mat-label>
+            <input required [(ngModel)]="bay" matInput #input />
+            <mat-hint>(Ex.1)</mat-hint>
+          </mat-form-field>
+        </td> -->
+      </tr>
+    </table>
+
+    <div class="buttons">
+      <button mat-button id="addbutton" (click)="onsubmit_check()">Edit</button>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+<div class="container">
+  <h1 mat-dialog-title style="justify-content: center; text-align: center;">Customer Details</h1>
+  <div mat-dialog-content>
+    <!-- <p>Please enter an amount</p> -->
+    <tr>
+    <td>
+    <mat-form-field appearance="fill">
+      <mat-label>Customer No</mat-label>
+      <input matInput [(ngModel)]="data.owner_id" disabled>
+    </mat-form-field>
+  </td>
+  </tr>
+  <tr>
+    <td>
+      <mat-form-field appearance="legacy">
+        <mat-label>Customer First Name</mat-label>
+        <input matInput type="text" [(ngModel)]="data.first_name">
+      </mat-form-field>
+    </td>
+  
+  
+    <td>
+      <mat-form-field appearance="legacy">
+        <mat-label>Customer Last Name</mat-label>
+        <input matInput type="text" [(ngModel)]="data.last_name">
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <mat-form-field appearance="legacy">
+        <mat-label>Customer Address</mat-label>
+        <input matInput type="text" [(ngModel)]="data.address">
+        <!-- <mat-hint>Enter Street Address</mat-hint> -->
+      </mat-form-field>
+    </td>
+
+    <td>
+      <mat-form-field appearance="legacy">
+        <mat-label>Customer City/Town</mat-label>
+        <input matInput type="text" [(ngModel)]="data.town">
+        <!-- <mat-hint>Enter City/Town</mat-hint> -->
+      </mat-form-field>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <mat-form-field appearance="legacy">
+        <mat-label>Customer Mobile</mat-label>
+        <input matInput type="text" [(ngModel)]="data.mobile">
+        <!-- <mat-hint>Seperate street address with a commar</mat-hint> -->
+      </mat-form-field>
+    </td>
+
+    <td>
+      <mat-form-field appearance="legacy">
+        <mat-label>Customer Email</mat-label>
+        <input matInput type="text" [(ngModel)]="data.email">
+        <!-- <mat-hint>Seperate street address with a commar</mat-hint> -->
+      </mat-form-field>
+    </td>
+  </tr>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+  </div>
+</div>

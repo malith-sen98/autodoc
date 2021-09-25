@@ -1,0 +1,224 @@
+.container {
+  width: 100%;
+  max-height: 70vh;
+  /* background: chartreuse; */
+  margin-top: 0%;
+  /* padding-bottom: 6%; */
+  
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+
+.backbox {
+  position: relative;
+  width: 100%;
+  height: auto;
+  left: 0px;
+  top: 0%;
+  align-items: center;
+  text-align: center;
+  font-size: 30px;
+  -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.topic{
+  width: 100%;
+}
+
+h1 {
+  float: left;
+  margin: 0px 5px;
+  color: black;
+  font-size: 40px;
+  font-family: Catamaran;
+  /* text-shadow: 1px 1px 5px black; */
+}
+
+.addButton{
+  float: right;
+  margin-right: 5px;
+}
+
+.searchbox {
+  float: right;
+  width: 40%;
+  height: 2em;
+  font-family: Catamaran;
+  font-size: 100%;
+  border-radius: 50px;
+  /* background: red; */
+  padding: 0%;
+  font-size: 35px;
+  margin-bottom: 3%;
+}
+
+.mat-icon {
+  margin-right: 2%;
+}
+
+.mat-mini-fab{
+  margin: 5px 5px;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+  cursor: pointer;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+  text-align: start;
+  font-size: 18px;
+}
+
+th {
+  font-size: 18px;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+
+.mat-form-field {
+  /* background: red; */
+  margin-right: 3em;
+}
+
+#searchEmp {
+  background-image: url('/assets/img/ico/search.png');
+  background-position: 10px 12px;
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  width: 95%;
+  border-radius: 10px;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+  margin-top: 13px;
+}
+
+#editbutton {
+  position: relative;
+  width: 540px;
+  height: 81px;
+  background: #000000;
+  box-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  color: #FFFFFF;
+  font-size: 36px;
+  font-family: Catamaran;
+  padding: 23px;
+  margin: 20px;
+  margin-bottom: 60px;
+}
+
+#editbutton:hover {
+  background: rgb(7, 3, 243);
+  color: rgb(255, 255, 255);
+  transition: 0.3s;
+}
+
+
+/* new */
+#employeeTable {
+  position: relative;
+  border-collapse: collapse;
+  background: rgba(245, 245, 245, 0.5);
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  font-size: 20px;
+  border-radius: 10px;
+  font-family: catamaran;
+  margin: 0px auto;
+}
+
+#employeeTable th, #employeeTable td {
+  text-align: left;
+  padding: 12px;
+  
+}
+
+#employeeTable .serviceLocation{
+  text-align: end;
+  /* background: red; */
+  /* float: right; */
+  /* margin-top: 15px; */
+}
+
+#employeeTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+
+#employeeTable tr:hover{
+  background: whitesmoke;
+  cursor: pointer;
+}
+
+#employeeTable tr.header, tr.header:hover{
+  background-color: rgba(61, 12, 238, 0.525);
+  cursor: default;
+}
+
+#employeeTable tr.classToApply{
+  background-color: rgb(37,122,253);;
+  color: white;
+
+}
+
+tbody {
+  display: block;
+  max-height: 43vh;
+  overflow: auto;
+}
+
+tbody::-webkit-scrollbar {
+  display: none;
+}
+
+thead, tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;/* even columns width , fix width of table too*/
+}
+th{
+  color: white;
+}
